@@ -80,6 +80,11 @@ server {
    index index.html index.html;
    location / {
    }
+   /*si je dois donner acces à un dossier speciale*/
+   location /files/ {
+      autoindex on;
+      root /var/www/myapp/files;
+   }
 }
 ```
 
