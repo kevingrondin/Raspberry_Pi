@@ -83,7 +83,7 @@ server {
    }
    
    /* si on un /accueil on seras redirigé / */
-   Rewrite ^/accueil$   /
+   Rewrite   ^/accueil$   /
    
    error_log    /var/www/myapp/logs/errors_log
    access_log   /var/www/myapp/logs/access_log
