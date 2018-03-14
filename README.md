@@ -45,7 +45,7 @@ sudo /etc/init.d/apache2 stop
 sudo systemctl disable apache2
 ```
 
-#### Monitoring pm2 et keymetrics
+## Monitoring
 
 ```batch
 npm install pm2 -g
