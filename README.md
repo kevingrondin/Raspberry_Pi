@@ -82,16 +82,16 @@ server {
       index   index.html   index.html
    }
    
+   location /files/ {
+      autoindex   on;
+      root        /var/www/myapp/files;
+   }
+   
    /* si on un /accueil on seras redirigé / */
    Rewrite   ^/accueil$   /
    
    error_log    /var/www/myapp/logs/errors_log
    access_log   /var/www/myapp/logs/access_log
-}
-
-location /files/ {
-   autoindex   on;
-   root        /var/www/myapp/files;
 }
 ```
 
