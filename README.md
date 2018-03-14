@@ -56,9 +56,9 @@ sudo apt-get install nginx
 sudo service nginx start
 ```
 
-> Pour creer des sites, il faut creer des .conf dans */etc/nginx/sites-enabled*
+Pour creer des sites, il faut creer des .conf dans */etc/nginx/sites-enabled*
 
-> Nous allons creer notre .conf dans */etc/nginx/sites-available* et creer un lien symbolique dans */etc/nginx/sites-enabled*
+Nous allons creer notre .conf dans */etc/nginx/sites-available* et creer un lien symbolique dans */etc/nginx/sites-enabled*
 
 ```batch
 ln -s /etc/nginx/sites-available/myapp.conf /etc/nginx/sites-enabled
