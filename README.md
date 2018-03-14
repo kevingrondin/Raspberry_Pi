@@ -70,6 +70,19 @@ on redemarre par
 /etc/init.d/nginx reload
 ```
 
+Dans notre fichier .conf
+
+```javascript
+server {
+   listen 80 default_server;
+   root /var/www/myapp/build;
+   server_name my.domain.com other.domain.com;
+   index index.html index.html;
+   location / {
+   }
+}
+```
+
 ## Monitoring
 
 ```batch
