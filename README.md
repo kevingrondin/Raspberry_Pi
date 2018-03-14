@@ -45,6 +45,26 @@ sudo /etc/init.d/apache2 stop
 sudo systemctl disable apache2
 ```
 
+## Web
+
+#### Nginx
+
+Installation
+
+```batch
+sudo apt-get install nginx
+sudo service nginx start
+```
+
+Configuration
+
+```batch
+cd /etc/nginx
+sudo rm site-enabled/default
+cd sites-available
+sudo nano myapp
+```
+
 ## Monitoring
 
 ```batch
