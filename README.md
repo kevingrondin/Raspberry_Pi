@@ -74,18 +74,28 @@ Dans notre fichier .conf
 
 ```javascript
 server {
-   listen 80 default_server;
-   root /var/www/myapp/build;
-   server_name my.domain.com other.domain.com;
-   index index.html index.html;
+   listen        80;
+   server_name   my.domain.com   other.domain.com;
+   
    location / {
-   }  
+      root    /var/www/myapp/build
+      index   index.html   index.html
+   }
+   
+   error_log    /var/www/myapp/logs/errors_log
+   access_log   /var/www/myapp/logs/access_log
 }
-/*si je dois donner acces à un dossier speciale*/
+
 location /files/ {
-   autoindex on;
-   root /var/www/myapp/files;
+   autoindex   on;
+   root        /var/www/myapp/files;
 }
+```
+
+Il est conceillé de faire des test avant tout redemarrage aprés chaque modification pour voir les erreurs
+
+```batch
+sudo nginx -t
 ```
 
 ## Monitoring
