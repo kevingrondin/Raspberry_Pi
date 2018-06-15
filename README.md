@@ -28,14 +28,26 @@ gateway 192.168.1.1
 #### Mettre à jour le système
 
 ```batch
-sudo apt-get update -y && sudo apt-get upgrade -y && sudo reboot
+sudo apt-get update -y && sudo apt-get upgrade -y && sudo apt full-upgrade -y && sudo reboot
+```
+
+> acces à distance
+
+```batch
+sudo apt install -y xrdp
+```
+
+> acces depuis windows et mac (rajouter .local pour mac) avec mstsc
+```batch
+sudo apt install -y samba
 ```
 
 #### Installer nodejs
 
 ```batch
-curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
+curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
 sudo apt-get install -y nodejs
+sudo npm install -g npm
 ```
 
 #### Desactiver apache, ainsi qu'au demarrage
