@@ -59,60 +59,6 @@ sudo systemctl disable apache2
 
 ## Web
 
-#### Nginx
-
-Installation
-
-```batch
-sudo apt-get install nginx
-sudo service nginx start
-```
-
-Pour creer des sites, il faut creer des .conf dans */etc/nginx/sites-enabled*
-
-Nous allons creer notre .conf dans */etc/nginx/sites-available* et creer un lien symbolique dans */etc/nginx/sites-enabled*
-
-```batch
-ln -s /etc/nginx/sites-available/myapp.conf /etc/nginx/sites-enabled
-```
-
-on redemarre par
-
-```batch
-/etc/init.d/nginx reload
-```
-
-Dans notre fichier .conf
-
-```javascript
-server {
-   listen        80;
-   server_name   my.domain.com   other.domain.com;
-   
-   location / {
-      root    /var/www/myapp/build
-      index   index.html   index.html
-   }
-   
-   location /files/ {
-      autoindex   on;
-      root        /var/www/myapp/files;
-   }
-   
-   /* si on un /accueil on seras redirigé / */
-   Rewrite   ^/accueil$   /
-   
-   error_log    /var/www/myapp/logs/errors_log
-   access_log   /var/www/myapp/logs/access_log
-}
-```
-
-Il est conceillé de faire des test avant tout redemarrage aprés chaque modification pour voir les erreurs
-
-```batch
-sudo nginx -t
-```
-
 ## Monitoring
 
 ```batch
