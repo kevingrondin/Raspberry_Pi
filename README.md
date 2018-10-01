@@ -47,7 +47,7 @@ sudo apt install -y samba samba-common-bin
 ```batch
 mkdir /home/shares/public
 chown -R root:users /home/shares/public
-chmod -R ug=rwx,o=rx /home/shares/public
+chmod -R ug=rwx,o=rwx /home/shares/public
 nano /etc/samba/smb.conf
 ```
 
