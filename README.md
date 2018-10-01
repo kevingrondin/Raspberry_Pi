@@ -63,6 +63,7 @@ Mettre read only à no
 
 > Ecrire tout en bas
 
+```batch
 \[public]
   comment= Public Storage
   path = /home/shares/public
@@ -71,6 +72,7 @@ Mettre read only à no
   create mask = 0660
   directory mask = 0771
   read only = no
+```
 
 > Redemarrer samba
 
