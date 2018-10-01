@@ -80,6 +80,12 @@ Mettre read only à no
 /etc/init.d/samba restart
 ```
 
+> Creer l'utilisateur Pi
+
+```batch
+sudo smbpasswd -a pi
+```
+
 #### Installer nodejs
 
 ```batch
