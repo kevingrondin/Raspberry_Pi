@@ -64,7 +64,7 @@ Mettre read only à no
 > Ecrire tout en bas
 
 ```batch
-\[public]
+[public]
   comment= Public Storage
   path = /home/shares/public
   valid users = @users
