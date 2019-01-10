@@ -1,5 +1,7 @@
 # Raspberry
 
+> Configurer un raspberry
+
 ## Carte SD
 
 #### Formatter la SD
