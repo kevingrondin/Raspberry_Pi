@@ -4,7 +4,20 @@
 
 #### Formatter la SD
 
-La préparation de la carte SD commence par un formatage en *FAT32* [SD Formatter](https://www.sdcard.org/downloads/formatter_4/index.html)
+Formater depuis un windows
+
+```BATCH
+diskpart
+list disk
+select disk
+clean
+create partition primary
+active
+format fs=exfat quick
+assign
+exit
+exit
+```
 
 #### Preparer la SD
 
