@@ -4,7 +4,7 @@
 
 #### Formatter la SD
 
-Formater depuis un windows
+Formater depuis un windows avec l'invite de commande
 
 ```BATCH
 diskpart
