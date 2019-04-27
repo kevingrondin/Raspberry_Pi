@@ -69,6 +69,19 @@ nano /etc/samba/smb.conf
 > Rajouter la ligne 
 security = user
 
+
+sous la ligne
+*##### Networking ####*
+
+veillez à laisser decomanter les lignes
+
+> interfaces = 127.0.0.0/8 eth0
+
+et
+
+> bind interfaces only = yes
+
+
 sous la ligne
 *##### Authentification ####*
 
