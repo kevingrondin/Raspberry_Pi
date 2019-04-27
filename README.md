@@ -95,6 +95,8 @@ Mettre read only à no
 [public]
   comment= Public Storage
   path = /home/shares/public
+  writable = yes
+  guest ok = yes
   valid users = @users
   force group = users
   create mask = 0660
