@@ -126,9 +126,15 @@ sudo npm install -g npm
 
 #### Desactiver apache, ainsi qu'au demarrage
 
-```batch
+```shell
 sudo /etc/init.d/apache2 stop
 sudo systemctl disable apache2
+```
+
+#### Désinstaller LibreOffice
+
+```shell
+sudo apt-get remove --purge libreoffice*
 ```
 
 ## Web
