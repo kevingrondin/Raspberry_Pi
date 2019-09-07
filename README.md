@@ -53,6 +53,16 @@ network={
 }
 ```
 
+### Mettre le clavier en français
+
+```SHELL
+sudo raspi-config
+```
+
+laisser Generic 105
+
+Choisir French suivant jusqu'a la fin
+
 ## Reseaux
 
 #### Assigner une adresse IP Fixe
