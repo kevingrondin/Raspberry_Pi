@@ -42,6 +42,18 @@ network={
 
 creer un fichier ssh à la racine aussi
 
+### Bon si l'étape précedente ne marche pas
+
+se rendre sur `/etc/wpa_supplicant/wpa_supplicant.conf`
+
+```SHELL
+network={
+   ssid="GRONDIN"
+   psk="bonjours"
+   key_mgmt=WPA-PSK
+}
+```
+
 ## Reseaux
 
 #### Assigner une adresse IP Fixe
