@@ -48,9 +48,8 @@ se rendre sur `/etc/wpa_supplicant/wpa_supplicant.conf`
 
 ```SHELL
 network={
-   ssid="GRONDIN"
-   psk="bonjours"
-   key_mgmt=WPA-PSK
+   ssid="yourNetworkSSID"
+   psk="yourNetworkPasswd"
 }
 ```
 
