@@ -4,6 +4,8 @@
 
 ## Carte SD
 
+Télécharger l'image [ici](https://www.raspberrypi.org/downloads/raspbian/) la version light est suffisante
+
 #### Formatter la SD
 
 Formater depuis un windows avec l'invite de commande
@@ -23,7 +25,22 @@ exit
 
 #### Preparer la SD
 
-Documentation non écrite
+Avec rufus ou [etcher](https://etcher.io) 
+
+### Configurer le wifi et ssh en avance
+
+créer un fichier à la racine `wpa_suppli-cant.conf` contenant ça, remplacer les informations dans `network`
+
+```SHELL
+ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
+update_config=1
+network={
+    ssid="yourNetworkSSID"
+    psk="yourNetworkPasswd"
+}
+```
+
+creer un fichier ssh à la racine aussi
 
 ## Reseaux
 
