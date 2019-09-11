@@ -32,8 +32,6 @@ Avec rufus ou [etcher](https://etcher.io)
 créer un fichier à la racine `wpa_suppli-cant.conf` contenant ça, remplacer les informations dans `network`
 
 ```SHELL
-ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
-update_config=1
 network={
     ssid="yourNetworkSSID"
     psk="yourNetworkPasswd"
