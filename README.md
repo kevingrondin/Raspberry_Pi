@@ -2,6 +2,33 @@
 
 > Configurer un raspberry
 
+## Si vous êtes sur windows 10
+
+Creer votre clée public, et votre clée privée
+
+```Shell
+ssh-keygen -t rsa -b 4096 -C "name@email.com"
+```
+
+Affiche votre clée public, à copier dans les settings de github
+
+```Shell
+type C:\Users\name\.ssh\id_rsa.pub
+```
+
+Configurer git
+
+```Shell
+git config --global user.name "Your Name"
+git config --global user.email your_email@users.noreply.github.com
+```
+
+Envoyé la clée OPENSSH au rasp
+
+```Shell
+cat ~/.ssh/id_rsa.pub | ssh <USERNAME>@<IP-ADDRESS> 'mkdir -p ~/.ssh && cat >> ~/.ssh/authorized_keys'
+```
+
 ## Carte SD
 
 Télécharger l'image [ici](https://www.raspberrypi.org/downloads/raspbian/) la version light est suffisante
