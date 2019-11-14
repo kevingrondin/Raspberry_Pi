@@ -73,17 +73,6 @@ network={
 Ecrire ces informations en **EOL Unix** avec Notepad++ dans le menu *Edit/EOL Conversion*, les réseau 5GHZ ne fonctionneras pas.
 Aprés chaque redemarrage la configuration seras supprimé
 
-### Bon si l'étape précedente ne marche pas
-
-se rendre sur `/etc/wpa_supplicant/wpa_supplicant.conf`
-
-```SHELL
-network={
-   ssid="yourNetworkSSID"
-   psk="yourNetworkPasswd"
-}
-```
-
 ### Mettre le clavier en français
 
 ```SHELL
