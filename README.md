@@ -56,16 +56,22 @@ Avec rufus ou [etcher](https://etcher.io)
 
 ### Configurer le wifi et ssh en avance
 
-créer un fichier à la racine `wpa_suppli-cant.conf` contenant ça, remplacer les informations dans `network`
+créer un fichier à la racine `ssh` et en même temps `wpa_supplicant.conf` avec ces infos
 
 ```SHELL
+country=fr
+update_config=1
+ctrl_interface=/var/run/wpa_supplicant
+
 network={
-    ssid="yourNetworkSSID"
-    psk="yourNetworkPasswd"
+ scan_ssid=1
+ ssid="nameofnetworknotnetwork5GHZ"
+ psk="motdepasse"
 }
 ```
 
-creer un fichier ssh à la racine aussi
+Ecrire ces informations en **EOL Unix** avec Notepad++ dans le menu *Edit/EOL Conversion*, les réseau 5GHZ ne fonctionneras pas.
+Aprés chaque redemarrage la configuration seras supprimé
 
 ### Bon si l'étape précedente ne marche pas
 
