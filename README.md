@@ -2,7 +2,88 @@
 
 > Configurer un raspberry
 
-## Si vous êtes sur windows 10
+## Carte SD
+
+Télécharger l'image [ici](https://www.raspberrypi.org/downloads/raspbian/) la version light est suffisante
+
+### Formatter la SD
+
+Formater depuis un windows avec l'invite de commande
+
+```BATCH
+diskpart
+list disk
+select disk
+clean
+create partition primary
+active
+format fs=exfat quick
+assign
+exit
+exit
+```
+
+### Preparer la SD
+
+Avec rufus ou [etcher](https://etcher.io) 
+
+### Configurer le wifi et ssh en avance
+
+créer un fichier à la racine `ssh` et en même temps `wpa_supplicant.conf` avec ces infos
+
+```SHELL
+country=fr
+update_config=1
+ctrl_interface=/var/run/wpa_supplicant
+
+network={
+ scan_ssid=1
+ ssid="nameofnetworknotnetwork5GHZ"
+ psk="motdepasse"
+}
+```
+
+Ecrire ces informations en **EOL Unix** avec Notepad++ dans le menu *Edit/EOL Conversion*, les réseau 5GHZ ne fonctionneras pas.
+Aprés chaque redemarrage la configuration seras supprimé
+
+## Fixer une adresse IP
+
+```SHELL
+sudo nano /etc/dhcpcd.conf
+```
+
+```BASH
+interface wlan0
+static ip_address=192.168.1.2/24
+static routers=192.168.1.1
+static domain_name_servers=192.168.1.1
+```
+
+## Mettre le clavier en français
+
+```SHELL
+sudo raspi-config
+```
+
+changer les options de locatisations (FR UTF8)
+
+## Systeme
+
+#### Mettre à jour le système
+
+```batch
+sudo su
+apt update -y && apt upgrade -y && sudo apt full-upgrade -y 
+apt-get install ntpdate
+```
+
+Changer le mot de passe
+
+```Shell
+passwd
+```
+
+## Connexion avec clée SSH
 
 Creer votre clée public, et votre clée privée
 
@@ -29,88 +110,7 @@ Envoyé la clée OPENSSH au rasp
 cat ~/.ssh/id_rsa.pub | ssh <USERNAME>@<IP-ADDRESS> 'mkdir -p ~/.ssh && cat >> ~/.ssh/authorized_keys'
 ```
 
-## Carte SD
-
-Télécharger l'image [ici](https://www.raspberrypi.org/downloads/raspbian/) la version light est suffisante
-
-#### Formatter la SD
-
-Formater depuis un windows avec l'invite de commande
-
-```BATCH
-diskpart
-list disk
-select disk
-clean
-create partition primary
-active
-format fs=exfat quick
-assign
-exit
-exit
-```
-
-#### Preparer la SD
-
-Avec rufus ou [etcher](https://etcher.io) 
-
-### Configurer le wifi et ssh en avance
-
-créer un fichier à la racine `ssh` et en même temps `wpa_supplicant.conf` avec ces infos
-
-```SHELL
-country=fr
-update_config=1
-ctrl_interface=/var/run/wpa_supplicant
-
-network={
- scan_ssid=1
- ssid="nameofnetworknotnetwork5GHZ"
- psk="motdepasse"
-}
-```
-
-Ecrire ces informations en **EOL Unix** avec Notepad++ dans le menu *Edit/EOL Conversion*, les réseau 5GHZ ne fonctionneras pas.
-Aprés chaque redemarrage la configuration seras supprimé
-
-### Fixer une adresse IP
-
-```SHELL
-sudo nano /etc/dhcpcd.conf
-```
-
-```BASH
-interface wlan0
-static ip_address=192.168.1.2/24
-static routers=192.168.1.1
-static domain_name_servers=192.168.1.1
-```
-
-### Mettre le clavier en français
-
-```SHELL
-sudo raspi-config
-```
-
-changer les options de locatisations (FR UTF8)
-
-## Systeme
-
-#### Mettre à jour le système
-
-```batch
-sudo su
-apt update -y && apt upgrade -y && sudo apt full-upgrade -y 
-apt-get install ntpdate
-```
-
-Changer le mot de passe
-
-```Shell
-passwd
-```
-
-> acces à distance
+### acces à distance
 
 ```batch
 sudo apt install -y xrdp
@@ -182,7 +182,7 @@ sudo smbpasswd -a pi
 #### Installer nodejs
 
 ```batch
-curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
+curl -sL https://deb.nodesource.com/setup_13.x | sudo -E bash -
 sudo apt-get install -y nodejs
 sudo npm install -g npm
 ```
