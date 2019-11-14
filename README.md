@@ -92,22 +92,7 @@ static domain_name_servers=192.168.1.1
 sudo raspi-config
 ```
 
-laisser Generic 105
-
-Choisir French suivant jusqu'a la fin
-
-## Reseaux
-
-#### Assigner une adresse IP Fixe
-
-Dans le fichier */etc/network/interfaces*
-
-```batch
-iface eth0 inet static
-address 192.168.1.69
-netmask 255.255.255.0
-gateway 192.168.1.1
-```
+changer les options de locatisations (FR UTF8)
 
 ## Systeme
 
