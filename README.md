@@ -73,6 +73,19 @@ network={
 Ecrire ces informations en **EOL Unix** avec Notepad++ dans le menu *Edit/EOL Conversion*, les réseau 5GHZ ne fonctionneras pas.
 Aprés chaque redemarrage la configuration seras supprimé
 
+### Fixer une adresse IP
+
+```SHELL
+sudo nano /etc/dhcpcd.conf
+```
+
+```BASH
+interface wlan0
+static ip_address=192.168.1.2/24
+static routers=192.168.1.1
+static domain_name_servers=192.168.1.1
+```
+
 ### Mettre le clavier en français
 
 ```SHELL
