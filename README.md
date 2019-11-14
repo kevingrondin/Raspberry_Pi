@@ -100,7 +100,14 @@ changer les options de locatisations (FR UTF8)
 
 ```batch
 sudo su
-apt update -y && apt upgrade -y && sudo apt full-upgrade -y && sudo reboot
+apt update -y && apt upgrade -y && sudo apt full-upgrade -y 
+apt-get install ntpdate
+```
+
+Changer le mot de passe
+
+```Shell
+passwd
 ```
 
 > acces à distance
