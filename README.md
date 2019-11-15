@@ -74,7 +74,8 @@ changer les options de locatisations (FR UTF8)
 ```batch
 sudo su
 apt update -y && apt upgrade -y && sudo apt full-upgrade -y 
-apt-get install ntpdate
+apt install ntpdate
+apt install ntp
 ```
 
 Changer le mot de passe
