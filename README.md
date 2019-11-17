@@ -188,6 +188,19 @@ sudo apt-get install -y nodejs
 sudo npm install -g npm
 ```
 
+autre façon
+```batch
+cat /proc/cpuinfo
+
+wget https://nodejs.org/dist/...
+tar xf node-v...
+
+mv node-v... node
+
+ln -s /var/www/node/bin/node /usr/sbin
+ln -s /var/www/node/bin/npm /usr/sbin
+```
+
 #### Desactiver apache, ainsi qu'au demarrage
 
 ```shell
