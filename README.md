@@ -148,7 +148,7 @@ sudo nano /etc/samba/smb.conf
 
 ```Shell
 sudo pdbedit -a -u pi
-sudo service smdb restart
+sudo service smbd restart
 ```
 #### Installer nodejs
 
