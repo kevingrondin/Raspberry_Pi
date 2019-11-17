@@ -171,7 +171,7 @@ Mettre read only à no
 > Redemarrer samba
 
 ```batch
-/etc/init.d/samba restart
+/etc/init.d/smbd restart
 ```
 
 > Creer l'utilisateur Pi
