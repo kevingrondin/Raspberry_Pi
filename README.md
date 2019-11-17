@@ -119,68 +119,40 @@ sudo apt install -y xrdp
 
 > acces depuis windows et mac (rajouter .local pour mac) avec mstsc
 ```batch
-sudo apt install -y samba samba-common-bin
+sudo apt install -y samba
 ```
 
 > configurer samba
 ```batch
-mkdir /home/shares/public
-chown -R root:users /home/shares/public
-chmod -R ug=rwx,u=rwx,o=rwx /home/shares/public
-nano /etc/samba/smb.conf
+mkdir /home/pi/shares
+chmod 777 /home/shares/public
+
+sudo rm /etc/samba/smb.conf
+sudo nano /etc/samba/smb.conf
 ```
 
-> Rajouter la ligne 
-security = user
+```Bash
+[global]
+        netbios name = server
+        server string = server
+        workgroup = WORKGROUP
+        security = user
 
-
-sous la ligne
-*##### Networking ####*
-
-veillez à laisser decomanter les lignes
-
-> interfaces = 127.0.0.0/8 eth0
-
-et
-
-> bind interfaces only = yes
-
-
-sous la ligne
-*##### Authentification ####*
-
-> chercher *\[homes]*
-
-Mettre read only à no
-
-> Ecrire tout en bas
-
-```batch
-[public]
-  comment= Public Storage
-  path = /home/shares/public
-  writable = yes
-  guest ok = yes
-  valid users = @users
-  force group = users
-  create mask = 0660
-  directory mask = 0771
-  read only = no
+[server]
+        comment = server
+        path = "/home/pi/shares"
+        public = yes
+        guest ok = yes
+        read only = no
 ```
 
-> Redemarrer samba
-
-```batch
-/etc/init.d/smbd restart
+```Shell
+sudo pdbedit -a -u pi
+sudo service smdb restart
 ```
-
-> Creer l'utilisateur Pi
-
-```batch
-sudo smbpasswd -a pi
-```
-
 #### Installer nodejs
+
+Façon Node
 
 ```batch
 curl -sL https://deb.nodesource.com/setup_13.x | sudo -E bash -
@@ -188,15 +160,21 @@ sudo apt-get install -y nodejs
 sudo npm install -g npm
 ```
 
-autre façon
+Façon linux
+
 ```batch
+//verfier si arm7 ou plus
 cat /proc/cpuinfo
 
+// aller sur navigateur web chercher la bonne installation
 wget https://nodejs.org/dist/...
+// decompresser et supprimer le fichier compresser aussi
 tar xf node-v...
 
+// renomer en node
 mv node-v... node
 
+// creer les lien 
 ln -s /var/www/node/bin/node /usr/sbin
 ln -s /var/www/node/bin/npm /usr/sbin
 ```
