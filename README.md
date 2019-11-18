@@ -230,6 +230,8 @@ curl -sSL get.docker.com | sh
 
 ## Monitoring
 
+### PM2
+
 ```batch
 npm install pm2 -g
 ```
@@ -240,21 +242,51 @@ demander a pm2 de ce lancer au demarrage du raspberry
 pm2 startup
 ```
 
-rentrer les information de votre bucket
-
-```batch
-pm2 link [Cle Publique] [Cle secrète]
-```
-
 monitorer le serveur complet
 
 ```batch
 pm2 install pm2-server-monit
 ```
 
+### Netdata
+
 Supervision en temp réel
 
 ```Bash
 bash <(curl -Ss https://my-netdata.io/kickstart.sh)
 ```
+### ncdu
 
+Installer ncdu avec apt pour visualiser les fichiers trop volumineux
+
+ce placer à la racine
+
+```Shell
+ncdu -x
+````
+
+### tmpreaper
+
+Installer tmpreaper avec apt
+
+lors de l'installation avec apt, il faut commenter la ligne showing dans le fichier etc/tmpreaper
+
+### lnav
+
+Analyser les log avec lnav installation simple avec apt
+
+```Shell
+lnav /var/log/messages*
+
+journalctl | lnav
+
+journalctl -f | lnav
+
+journalctl -o short-iso | lnav
+
+journalctl -o json | lnav
+
+journalctl -a -o json | lnav
+
+journalctl -o json --output-fields=MESSAGE,PRIORITY,_PID,SYSLOG_IDENTIFIER,_SYSTEMD_UNIT | lnav
+```
