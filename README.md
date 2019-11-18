@@ -104,6 +104,42 @@ Envoyé la clée OPENSSH au rasp
 cat ~/.ssh/id_rsa.pub | ssh <USERNAME>@<IP-ADDRESS> 'mkdir -p ~/.ssh && cat >> ~/.ssh/authorized_keys'
 ```
 
+Autoriser les authorized_keys dans sshd_config
+
+```Shell
+nano /etc/ssh/sshd_config
+```
+
+et decommentez
+
+```Bash
+AuthorizedKeysFile      %h/.ssh/authorized_keys
+```
+
+et recharger la config ssh
+
+```Bash
+/etc/init.d/ssh force-reload
+```
+
+et copier vos clée publique dans le fichier authorized_keys
+
+```Bash
+cat id_votrecle.pub >> authorized_keys
+```
+
+vous pouvez vous connectez avec cette ligne de commande
+
+```Shell
+ssh -i /root/.ssh/id_votrecle root@xxx.xxx.xxx.xxx
+```
+
+Marche aussi avec Rsync
+
+```Shell
+rsync -e « ssh -i /root/.ssh/id_votrecle » -av root@xxx.xxx.xxx.xxx:/source/destination/
+```
+
 ### acces à distance
 
 ```batch
