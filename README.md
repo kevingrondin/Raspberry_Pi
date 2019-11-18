@@ -185,6 +185,12 @@ sudo systemctl disable apache2
 sudo apt-get remove --purge libreoffice*
 ```
 
+#### Installer Docker
+
+```Shell
+curl -sSL get.docker.com | sh
+```
+
 ## Web
 
 ## Monitoring
