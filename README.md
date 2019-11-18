@@ -98,13 +98,6 @@ Affiche votre clée public, à copier dans les settings de github
 type C:\Users\name\.ssh\id_rsa.pub
 ```
 
-Configurer git
-
-```Shell
-git config --global user.name "Your Name"
-git config --global user.email your_email@users.noreply.github.com
-```
-
 Envoyé la clée OPENSSH au rasp
 
 ```Shell
@@ -217,3 +210,10 @@ monitorer le serveur complet
 ```batch
 pm2 install pm2-server-monit
 ```
+
+Supervision en temp réel
+
+```Bash
+bash <(curl -Ss https://my-netdata.io/kickstart.sh)
+```
+
