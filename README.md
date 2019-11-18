@@ -134,13 +134,18 @@ Marche aussi avec Rsync
 rsync -e « ssh -i /root/.ssh/id_votrecle » -av root@xxx.xxx.xxx.xxx:/source/destination/
 ```
 
-### acces à distance
+### Acces à distance
+
+#### Bureau à distance
 
 ```batch
 sudo apt install -y xrdp
 ```
 
-> acces depuis windows et mac (rajouter .local pour mac) avec mstsc
+acces depuis windows et mac (rajouter .local pour mac) avec mstsc
+
+#### Serveur de fichier
+
 ```batch
 sudo apt install -y samba
 ```
