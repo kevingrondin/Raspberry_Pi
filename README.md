@@ -125,13 +125,13 @@ et recharger la config ssh
 vous pouvez vous connectez avec cette ligne de commande
 
 ```Shell
-ssh -i /root/.ssh/id_votrecle root@xxx.xxx.xxx.xxx
+ssh -i /root/.ssh/<KEY> <USERNAME>@<IP_ADRESSE>
 ```
 
 Marche aussi avec Rsync
 
 ```Shell
-rsync -e « ssh -i /root/.ssh/id_votrecle » -av root@xxx.xxx.xxx.xxx:/source/destination/
+rsync -e « ssh -i /root/.ssh/<KEY> » -av <USERNAME>@<IP_ADRESSE>:/source/destination/
 ```
 
 Si vous êtes sur windows vous pouvez utiliser Pageant pour ne plus à avoir entrer les clée privé à chaque fois
