@@ -134,6 +134,17 @@ Marche aussi avec Rsync
 rsync -e « ssh -i /root/.ssh/id_votrecle » -av root@xxx.xxx.xxx.xxx:/source/destination/
 ```
 
+Si vous êtes sur windows vous pouvez utiliser Pageant pour ne plus à avoir entrer les clée privé à chaque fois
+
+Dans votre dossier .ssh creer un fichier *config* sans extension, vous pouvez créer des alias pour vous connectez plus rapidement
+
+```Bash
+Host serv1
+   HostName monserveur
+   Port 22
+   User nameofuser
+```
+
 ### Acces à distance
 
 #### Bureau à distance
