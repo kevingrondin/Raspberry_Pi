@@ -98,6 +98,12 @@ Affiche votre clée public, à copier dans les settings de github
 type C:\Users\name\.ssh\id_rsa.pub
 ```
 
+Ajouter votre clée au SSH agent
+
+```Shell
+ssh-add ~/.ssh/id_rsa
+```
+
 Envoyé la clée OPENSSH au rasp
 
 ```Shell
