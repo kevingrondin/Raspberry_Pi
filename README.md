@@ -86,22 +86,26 @@ passwd
 
 ## Connexion avec clée SSH
 
-Creer votre clée public, et votre clée privée
+Creer votre clée public, et votre clée privée, laissez les double côte
 
 ```Shell
-ssh-keygen -t rsa -b 4096 -C "name@email.com"
+# Version secure
+ssh-keygen -t rsa -b 4096 -C "email_address"
+
+# Version basic
+ssh-keygen -t rsa -C "email_address"
 ```
 
-Affiche votre clée public, à copier dans les settings de github
+Pour tester votre clée avec github, une fois votre clée publique sur github
+
+```Shell
+ssh -T git@github.com
+```
+
+Sous windows
 
 ```Shell
 type C:\Users\name\.ssh\id_rsa.pub
-```
-
-Ajouter votre clée au SSH agent
-
-```Shell
-ssh-add ~/.ssh/id_rsa
 ```
 
 Envoyé la clée OPENSSH au rasp
