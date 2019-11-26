@@ -155,6 +155,14 @@ Host <ALIAS>
    User <USER>
 ```
 
+Sur unix dans votre dossier **home**
+
+```Bash
+cd
+```
+
+dans *~/.ssh* creer un fichier config de la même façon que pour windows pour les racourcis
+
 ### Acces à distance
 
 #### Bureau à distance
