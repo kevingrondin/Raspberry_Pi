@@ -158,7 +158,9 @@ Host <ALIAS>
 Sur unix dans votre dossier **home**
 
 ```Bash
-cd
+nano ~/.ssh/config
+chmod 600 ~/.ssh/config
+chown $USER ~/.ssh/config
 ```
 
 dans *~/.ssh* creer un fichier config de la même façon que pour windows pour les racourcis
