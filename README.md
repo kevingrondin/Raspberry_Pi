@@ -321,3 +321,48 @@ journalctl -a -o json | lnav
 
 journalctl -o json --output-fields=MESSAGE,PRIORITY,_PID,SYSLOG_IDENTIFIER,_SYSTEMD_UNIT | lnav
 ```
+
+### Historiser les log
+
+**logrotate** est déja présent sur les distribution linux, il permet d'effecctuer des actions de rotations et de compression sur les logs
+
+
+Assurons-nous que cette ligne n'est pas commentez
+
+```Shell
+cat /etc/logrotate.conf | grep "include"
+```
+
+Voici un exemple
+
+```Bash
+/var/log/mylogs/auth.log {
+     su root root
+     monthly
+     rotate 3
+     compress
+     missingok
+     create 644 root root
+}
+ 
+/var/log/mylogs/errors.log {
+     su root root
+     monthly
+     rotate 3
+     compress
+     missingok
+     create 644 root root
+}
+```
+
+. **monthly** : la rotation se fait mensuellement
+. **rotate 3** : le nombre de fichiers qu’on souhaite conserver
+. **compress** : les anciens fichiers sont compressés
+. **missingok** : ne considère pas l’absence du fichier comme une erreur
+. **create 644 root root** : créer le fichier de log immédiatement après la rotation avec les droits adéquats
+
+Petite verification
+
+```Shell
+logrotate --force /etc/logrotate.d/mylogs
+```
