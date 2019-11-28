@@ -276,7 +276,7 @@ comment = répertoire du <groupe>
   force create mode = 0770
 ```
 
-dans **valid users** on écri *@groupe1, @groupe2* et *user, user*
+dans **valid users** on écri *@groupe1, @groupe2* et *user1, user2*
 
 On test si tout es bon
 
