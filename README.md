@@ -403,7 +403,7 @@ journalctl -a -o json | lnav
 journalctl -o json --output-fields=MESSAGE,PRIORITY,_PID,SYSLOG_IDENTIFIER,_SYSTEMD_UNIT | lnav
 ```
 
-### Historiser les log
+### Si on utilise pas journalctl, mais les log normale
 
 **logrotate** est déja présent sur les distribution linux, il permet d'effecctuer des actions de rotations et de compression sur les logs
 
