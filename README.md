@@ -169,15 +169,15 @@ dans *~/.ssh* creer un fichier config de la même façon que pour windows pour l
 
 #### Bureau à distance
 
-```batch
+```Shell
 sudo apt install -y xrdp
 ```
 
 acces depuis windows et mac (rajouter .local pour mac) avec mstsc
 
-#### Serveur de fichier
+#### Serveur de fichier Simple
 
-```batch
+```Shell
 sudo apt install -y samba
 ```
 
@@ -209,6 +209,87 @@ sudo nano /etc/samba/smb.conf
 sudo pdbedit -a -u pi
 sudo service smbd restart
 ```
+
+#### Serveur de fichier Avancé
+
+Installation de samba
+
+```Shell
+sudo apt install -y samba
+```
+
+On créer un groupe
+
+```Shell
+groupadd <group>
+```
+
+On créer un <user> dans le groupe <group>
+
+```Shell
+useradd -g <group> <user>
+```
+
+On lui donne un mot de passe pour samba
+
+```Shell
+smbpasswd -a <user>
+```
+
+On créer un dossier partagé avec les droit adéquat
+
+```Shell
+mkdir -p /<partage>/<groupe>
+chown -R root:<groupe> /<partage>/<groupe>/
+chmod -R 770 /<partage>/<groupe>/
+```
+
+On historise la configuration par defaut de samba
+
+```Shell
+mv /etc/samba/smb.conf /etc/samba/smb.conf.bak
+```
+
+```Bash
+vi /etc/samba/smb.conf
+ 
+# Ajouter la configuration ci-dessous
+ 
+#======================= Global Settings =======================
+ 
+[global]
+workgroup = WORKGROUP
+server string = %h
+public = yes
+security = user
+encrypt passwords = true
+
+#======================= Share Definitions =======================
+
+[<group>]
+comment = répertoire du <groupe>
+  path = <partage>/<groupe>
+  valid users = @<groupe>
+  writable = yes
+  directory mask = 0770
+  create mask = 0770
+  force create mode = 0770
+```
+
+dans **valid users** on écri *@groupe1, @groupe2* et *user, user*
+
+On test si tout es bon
+
+```Shell
+testparm smb.conf
+```
+
+On redemarre si tout est bon 
+
+```Shell
+/etc/init.d/samba restar
+```
+
 #### Installer nodejs
 
 Façon Node
