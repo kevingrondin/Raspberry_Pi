@@ -355,11 +355,11 @@ Voici un exemple
 }
 ```
 
-. **monthly** : la rotation se fait mensuellement
-. **rotate 3** : le nombre de fichiers qu’on souhaite conserver
-. **compress** : les anciens fichiers sont compressés
-. **missingok** : ne considère pas l’absence du fichier comme une erreur
-. **create 644 root root** : créer le fichier de log immédiatement après la rotation avec les droits adéquats
+1. **monthly** : la rotation se fait mensuellement
+1. **rotate 3** : le nombre de fichiers qu’on souhaite conserver
+1. **compress** : les anciens fichiers sont compressés
+1. **missingok** : ne considère pas l’absence du fichier comme une erreur
+1. **create 644 root root** : créer le fichier de log immédiatement après la rotation avec les droits adéquats
 
 Petite verification
 
