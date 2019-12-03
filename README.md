@@ -418,21 +418,21 @@ Voici un exemple
 
 ```Bash
 /var/log/mylogs/auth.log {
-     su root root
+     su <user> <group>
      monthly
      rotate 3
      compress
      missingok
-     create 644 root root
+     create 644 <user> <group>
 }
  
 /var/log/mylogs/errors.log {
-     su root root
+     su <user> <group>
      monthly
      rotate 3
      compress
      missingok
-     create 644 root root
+     create 644 <user> <group>
 }
 ```
 
