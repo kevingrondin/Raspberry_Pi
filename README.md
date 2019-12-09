@@ -144,15 +144,20 @@ Marche aussi avec Rsync
 rsync -e « ssh -i /root/.ssh/<KEY> » -av <USERNAME>@<IP_ADRESSE>:/source/destination/
 ```
 
-Si vous êtes sur windows vous pouvez utiliser Pageant pour ne plus à avoir entrer les clée privé à chaque fois
+Si vous êtes sur windows vous pouvez utiliser **Pageant** et **wsl-ssh-pageant-amd64-gui** pour ne plus à avoir entrer les clée privé à chaque fois
 
 Dans votre dossier .ssh creer un fichier *config* sans extension, vous pouvez créer des alias pour vous connectez plus rapidement
 
 ```Bash
+Host *
+   ForwardAgent yes
+        
 Host <ALIAS>
    HostName <SERVEUR>
-   Port <PORT>
-   User <USER>
+   Port     <PORT>
+   User     <USER>
+   # Tunnel SSH
+   # ProxyCommand     ssh <USER>@<SERVEUR> -W %h:%p
 ```
 
 Sur unix dans votre dossier **home**
