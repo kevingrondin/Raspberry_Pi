@@ -452,3 +452,19 @@ Petite verification
 ```Shell
 logrotate --force /etc/logrotate.d/mylogs
 ```
+
+### ecouter le traffic
+
+```Shell
+iftop
+```
+
+```Shell
+nethogs
+```
+
+```Shell
+iptraf-ng
+```
+
+
