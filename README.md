@@ -496,6 +496,9 @@ sar -b
 
 # Entree sortie 
 sar -d
+
+# Une période 
+sadf -s 05:00:01 -e 06:00:01 -dT /var/log/sa/sa15 -- -A
 ```
 
 
