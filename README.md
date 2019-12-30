@@ -84,6 +84,12 @@ Changer le mot de passe
 passwd
 ```
 
+Mettre a jour le Noyau
+
+```Shell
+yum update kernel -y
+```
+
 ## Connexion avec clée SSH
 
 Creer votre clée public, et votre clée privée, laissez les double côte
@@ -465,6 +471,31 @@ nethogs
 
 ```Shell
 iptraf-ng
+```
+
+```Shell
+apt install sysstat
+
+# Regarder la crontab
+cat /etc/cron.d/sysstat
+
+# les fichiers générés
+ls /var/log/sa
+
+# CPU
+sar -u
+
+# Memoire
+sar -r
+
+# Swap
+sar -W
+
+# Etat des IO disque
+sar -b
+
+# Entree sortie 
+sar -d
 ```
 
 
