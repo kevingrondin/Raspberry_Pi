@@ -114,6 +114,13 @@ Sous windows
 type C:\Users\name\.ssh\id_rsa.pub
 ```
 
+Mettre les bon droits au fichier générés
+
+```Shell
+sudo chmod 600 ~/.ssh/id_rsa
+sudo chmod 600 ~/.ssh/id_rsa.pub
+```
+
 Envoyé la clée OPENSSH au rasp
 
 ```Shell
