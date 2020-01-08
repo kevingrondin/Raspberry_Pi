@@ -69,14 +69,27 @@ changer les options de locatisations (FR UTF8)
 
 ## Systeme
 
-### installer zsh
+### Installer zsh
+
+#### Installer 
 
 ```Shell
 sudo apt-get install zsh
 ```
 
+#### Par default
+
 ```Shell
 chsh
+```
+
+repondre **/bin/zsh**
+
+#### Autocompletion
+
+```Shell
+autoload -U compinit
+compinit
 ```
 
 repondre **/bin/zsh**
