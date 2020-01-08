@@ -69,6 +69,18 @@ changer les options de locatisations (FR UTF8)
 
 ## Systeme
 
+### installer zsh
+
+```Shell
+sudo apt-get install zsh
+```
+
+```Shell
+chsh
+```
+
+repondre **/bin/zsh**
+
 #### Mettre à jour le système
 
 ```batch
