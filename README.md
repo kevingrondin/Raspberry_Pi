@@ -92,8 +92,6 @@ autoload -U compinit
 compinit
 ```
 
-repondre **/bin/zsh**
-
 #### Mettre à jour le système
 
 ```batch
