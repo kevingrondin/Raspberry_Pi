@@ -183,6 +183,27 @@ chown $USER ~/.ssh/config
 
 dans *~/.ssh* creer un fichier config de la même façon que pour windows pour les racourcis
 
+### VSCODE à distance
+
+```Shell
+sudo apt-get install libsecret-1-dev libx11-dev libxkbfile-dev libxkbfile-dev
+git clone https://github.com/microsoft/vscode
+cd vscode
+git checkout ${vscodeVersion} # See travis.yml for the version to use.
+yarn
+git clone https://github.com/cdr/code-server src/vs/server
+cd src/vs/server
+yarn
+yarn patch:apply
+yarn watch
+# Wait for the initial compilation to complete (it will say "Finished compilation").
+# Run the next command in another shell.
+yarn start
+# Visit http://localhost:8080
+```
+
+**npm rebuild** dans vscode pour recompiler si des problèmes persistes
+
 ### Acces à distance
 
 #### Bureau à distance
