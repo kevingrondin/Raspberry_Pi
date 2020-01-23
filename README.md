@@ -519,4 +519,18 @@ sar -d
 sadf -s 05:00:01 -e 06:00:01 -dT /var/log/sa/sa15 -- -A
 ```
 
+## Installer Pyhton pour du machine learning
 
+```Shell
+curl -LO "https://repo.anaconda.com/miniconda/Miniconda2-4.7.12.1-Linux-x86_64.sh"
+```
+
+**path** correspond à notre repertoire de travail exemple : `/maboite/miniconda3`
+
+```Shell
+sh Miniconda3-latest-MacOSX-x86_64.sh -b -p <path>
+```
+
+```Shell
+conda install -y "jupyter" "numpy" "pandas"
+```
