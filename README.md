@@ -528,7 +528,7 @@ curl -LO "https://repo.anaconda.com/miniconda/Miniconda2-4.7.12.1-Linux-x86_64.s
 **path** correspond à notre repertoire de travail exemple : `/maboite/miniconda3`
 
 ```Shell
-sh Miniconda3-latest-MacOSX-x86_64.sh -b -p <path>
+sh Miniconda2-4.7.12.1-Linux-x86_64.sh -b -p <path>
 ```
 
 ```Shell
