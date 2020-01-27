@@ -1,8 +1,26 @@
-# Raspberry
+# Linux
 
-> Configurer un raspberry
+## Structure de dossier
 
-## Carte SD
+| Dossier | Description  |
+| --------| :----------- |
+| /boot   | Contient le fichier qui est utilisé par le boot loader (grub.cfg) |
+| /root   | Le repertoire de l'utilisateur root différent de / |
+| /dev    | les périphériques |
+| /etc    | configuration |
+| /bin -> /usr/bin    | Les commandes quotidienne de l'utilisateur |
+| /sbin -> /usr/sbin    | commandes système/sytèle de fichier |
+| /opt    | application complémentaire optionnelle ( pas partie de l'OS ) |
+| /proc   | processus en cour  ( n'existe qu'en mémoire ) |
+| /lib -> /usr/lib    | Fichiers de librairie du langage C dont ont besoin les commandes et les applications `strace -e open pwd` |
+| /tmp   | repertoire temporaires |
+| /home   | repertoire utilisateur |
+| /var   | log system |
+| /run | Démons système qui démarrent très tôt (systemd, udev ) pour stocker les fichiers d'exécution temporaires comme les fichiers PID |
+| /mnt | pour monter un système de fichiers externe |
+| /media | CDROM |
+
+## Installation (Raspberry)
 
 Télécharger l'image [ici](https://www.raspberrypi.org/downloads/raspbian/) la version light est suffisante
 
@@ -67,9 +85,7 @@ sudo raspi-config
 
 changer les options de locatisations (FR UTF8)
 
-## Systeme
-
-#### Mettre à jour le système
+## Mettre à jour le système
 
 ```batch
 sudo su
@@ -108,6 +124,13 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
+```
+
+## Changer le hostname
+
+```SHELL
+cat /etc/hostname
+hostnamectl set-hostname <newname>
 ```
 
 ## Connexion avec clée SSH
@@ -203,13 +226,16 @@ chown $USER ~/.ssh/config
 
 dans *~/.ssh* creer un fichier config de la même façon que pour windows pour les racourcis
 
-### VSCODE à distance
+## VSCODE server (ne fonctionne pas sur des architectures arm)
 
 ```Shell
 sudo apt-get install libx11-dev libxkbfile-dev libsecret-1-dev fakeroot rpm
-git clone https://github.com/microsoft/vscode
-cd vscode
-yarn
+```
+
+[code-server](https://github.com/cdr/code-server)
+
+```Shell
+docker run -it -p 127.0.0.1:8080:8080 -v "${HOME}/.local/share/code-server:/home/coder/.local/share/code-server" -v "$PWD:/home/coder/project" codercom/code-server:v2
 ```
 
 **npm rebuild** dans vscode pour recompiler si des problèmes persistes
@@ -554,3 +580,368 @@ sh Miniconda2-4.7.12.1-Linux-x86_64.sh -b -p <path>
 ```Shell
 conda install -y "jupyter" "numpy" "pandas"
 ```
+
+## Intimité sous BATCH
+
+```BATCH
+history
+```
+
+supprimer une ligne génante 
+
+```BATCH
+history -d numeroligne
+```
+
+Tout nettoyer
+
+```BATCH
+history -c
+```
+
+Si je veux l'historique sans les ligne de commande ls -l
+
+```BATCH
+export HISTIGNORE='ls -l:pwd:history'
+```
+
+tout l'historique sont sauvegardé ici
+
+`/home/yourname/.bash_history`
+
+*ctrl+r* permet de faire une recherche dans les lignes de commande tapé
+
+### System Monitoring
+
+```Shell
+df -h
+top
+dmesg
+iostat 1
+free
+cat /proc/cpuinfo
+cat /proc/meminfo
+```
+
+Installer `ncdu` avec apt pour visualiser les fichiers trop volumineux
+
+ce placer à la racine
+```shell
+ncdu -x
+```
+
+Installer `tmpreaper` avec apt
+
+> lors de l'installation avec apt, il faut commenter la ligne showing dans le fichier etc/tmpreaper
+
+Analyser les log avec `lnav` installation simple avec apt
+
+```Shell
+lnav /var/log/messages*
+
+journalctl | lnav
+
+journalctl -f | lnav
+
+journalctl -o short-iso | lnav
+
+journalctl -o json | lnav
+
+journalctl -a -o json | lnav
+
+journalctl -o json --output-fields=MESSAGE,PRIORITY,_PID,SYSLOG_IDENTIFIER,_SYSTEMD_UNIT | lnav
+```
+
+### Suppression
+
+Il peux arriver qu'un dossier comporte tellement de fichier que vider le dossier deviens impossible meme avec un rm
+
+```Shell
+find . -name "*.toto" -exec rm {} \;
+```
+
+### Rechercher 
+
+Rechercher une chaine de caractère dans tout les fichiers du repertoire courant
+
+```Shell
+grep -rnw './' -e 'machainearechercher'
+```
+
+### Wildcard
+
+Cette ligne de commande creer 9 fichiers
+
+```Shell
+touch abcd{1..9}-wyz
+```
+
+### Afficher un message à chaque connexion
+
+Pour afficher un message il faudra l'écrire la dedans
+
+/etc/motd
+
+### Process and Jobs
+
+systemctl
+ps -aux
+top
+crontab -e pour creer un crontab
+crontab -l pour lister les crontab
+
+on peux definir plus facilement les cron dans /etc/
+
+ls -l | grep cron
+
+### Process Management
+
+Crtl-z, jobs, bg, fg, nohup &, ps, pkill, nice 
+
+### Bloquer les connexions utiliateurs
+
+Pour afficher un message il faudra ce deplacer ici
+
+> /etc/nologin
+
+```Shell
+cat nologin
+```
+Ecrire votre message
+
+### Changer mot de passe
+
+```Shell
+passwd
+```
+
+### Commande sed
+
+Remplacer tout les mots `ancien` par les mots `nouveau` du fichier `MonFichier` 
+
+```Shell
+sed 's/ancien/nouveau/g' MonFichier
+```
+
+Rajouter l'argument -i pour que cela soit actif
+
+```Shell
+sed -i 's/ancien/nouveau/g' MonFichier
+```
+
+Supprimer toutes les lignes dans le fichier contenant le mot `ancien` dans `MonFichier`
+
+```Shell
+sed '/ancien/d' MonFichier
+```
+
+Supprimer toutes les lignes vide dans `MonFichier`
+
+```Shell
+sed -i '/^$/d' MonFichier
+```
+
+### Tester le chiffrement TLS/SSL ou service en ligne (STARTTLS)
+
+```BATCH
+git clone –depth 1 https://github.com/drwetter/testssl.sh.git
+cd testssl.sh
+./testssl.sh https://qwant.com
+```
+
+### Tableau bord serveur
+
+Surveillez son linux en temp réel sur l'adresse htt://127.0.0.1:19999
+
+```BATCH
+bash <(curl -Ss https://my-netdata.io/kickstart.sh)
+```
+
+### Detecter le traffic malicieux
+
+https://github.com/stamparm/maltrail
+
+### Mise à jour
+
+Mise a jour
+
+```SHELL
+apt-get update
+apt-get upgrade
+```
+
+### Voir les paquets installé
+
+```SHELL
+dpkg -l | grep paquet_recherché
+```
+
+### Système log monitor
+
+Voir les log 
+
+```SHELL
+cd var/log
+
+ls -ltr
+ll | more
+```
+
+Voir les log de demarrage toujours dans `var/log`
+
+```SHELL
+more boot.log
+```
+
+voir quand est-ce que boot.log a été modifié
+
+```SHELL
+ls -l boot.log
+```
+
+voir les log du matériel
+```SHELL
+dmesg
+```
+
+### Utilisateur
+
+Creer l'utilisateur `toto` et l'ajouter au group sudo
+
+```SHELL
+useradd toto
+usermod -aG sudo toto
+```
+
+Supprimer un utilisateur
+
+```SHELL
+userdel -r toto
+```
+
+Chercher toto dans /etc/group
+
+```SHELL
+grep toto /etc/group
+```
+
+Creer un groupe TEST
+
+```SHELL
+groupadd TEST
+```
+
+Voir la liste de tout les groupes
+
+```SHELL
+cat /etc/group/
+```
+
+### rsync
+
+Synchroniser deux repertoire sur un serveur local
+
+```BATCH
+rsync -zvr /var/opt/installation/inventory /root/temp
+```
+
+### Partage de fichier Windows
+
+Creer un groupe sharing
+
+```Shell
+addgroup --system sharing
+```
+
+Creer un groupe utilisateur sharing appartenant au groupe sharing
+
+```Shell
+adduser --system sharing --ingroup sharing
+```
+
+Mot de passe
+
+```Shell
+passwd sharing
+```
+
+Creer un repertoire partagé
+
+```Shell
+mkdir /home/sharing/public
+chmod 777 /home/sharing/public
+```
+
+Installer Samba
+
+```Shell
+apt update && apt install samba -y
+
+sudo rm /etc/samba/smb.conf
+sudo nano /etc/samba/smb.conf
+```
+
+Copier dans le fichier
+
+```Shell
+[global]
+        netbios name = server
+        server string = server
+        workgroup = WORKGROUP
+        security = user
+
+[server]
+        comment = server
+        path = "/home/sharing/public"
+        public = yes
+        guest ok = yes
+        read only = no
+```
+
+```Shell
+sudo pdbedit -a -u guest
+sudo service smbd restart
+```
+
+### Exécuter une ligne de commande sur une liste de serveur
+
+On recupére l'espace disque sur tout les serveurs
+
+```Shell
+sudo apt-get install python-pip
+sudo pip install pssh
+
+pssh -h pssh-hosts -l root -A -i "df -hT"
+```
+
+### Recupération de disque dur
+
+Recupérer [dd_rescue](http://www.garloff.de/kurt/linux/ddrescue/)
+
+Décompressez, puis make pour créer le binaire
+
+Si le disque enfommagé est /dev/sdb1
+Si le disque libre est /dev/sdc1
+
+Information du disque
+
+```BATCH
+fdisk -l
+```
+
+Se placer dans le repertoire dd_rescue
+
+```BATCH
+dd_rescue -l transfert_errors.log /dev/sdb1 /dev/sdc1
+```
+
+Le fichier log va être créé et qui va lister les blocs qu'il n'a pas plus traiter
+
+Choisisser un des lignes de commande ci-dessous selon votre système de fichiers
+```BATCH
+fsck.ext2
+fsck.ext3
+fsck.ext4
+fsck.vfat
+```
+
