@@ -945,3 +945,53 @@ fsck.ext4
 fsck.vfat
 ```
 
+## WSL 2
+
+### Windows
+
+PowerShell en admin
+
+```Shell
+Enable-WindowsOptionalFeature -Online -NoRestart -FeatureName VirtualMachinePlatform
+Enable-WindowsOptionalFeature -Online -NoRestart -FeatureName Microsoft-Windows-Subsystem-Linux
+Restart-Computer
+
+wsl --list 
+wsl --set-version Ubuntu 2
+wsl ~ -d Ubuntu
+```
+
+Installer [VcXsrv](https://sourceforge.net/projects/vcxsrv/) choisir **One Large Windows**
+
+Choisir une distribution
+
+- Ubuntu 16.04 LTS
+- Ubuntu 18.04 LTS
+- OpenSUSE Leap 15
+- OpenSUSE Leap 42
+- SUSE Linux Enterprise Server 12
+- SUSE Linux Enterprise Server 15
+- Kali Linux
+- Debian GNU/Linux
+- Fedora Remix pour WSL
+- Pengwin
+- Pengwin Enterprise
+- Alpine WSL
+
+### WSL
+
+```Shell
+sudo apt-get install xfce4
+```
+
+Lancer
+
+```Shell
+xfce4-session --display=:0.0
+```
+
+Ouvrir l'explorateur windows 
+
+```Shell
+explorer.exe .
+```
