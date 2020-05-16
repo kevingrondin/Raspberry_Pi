@@ -776,6 +776,32 @@ apt-get upgrade
 dpkg -l | grep paquet_recherché
 ```
 
+### Savoir si un repertoire est vide ou non
+```Shell
+$ if ./empty-dir /home/sk/ostechnix; then echo "It is empty" ; fi
+It is empty
+````
+
+### Génère un mot de passe avec 15 charactère 
+
+```Shell
+./randpass -n 15
+```
+
+### Voir les dernière modif d'un fichier
+
+```Shell
+./since /var/log/apt/history.log
+```
+
+### Exécuter une commande sur une période
+
+Exécuter un htop pendant 10h10m10s
+
+```Shell
+$ ./timeout -t 10:10:10 htop
+```
+
 ### Système log monitor
 
 Voir les log 
@@ -994,4 +1020,17 @@ Ouvrir l'explorateur windows
 
 ```Shell
 explorer.exe .
+```
+
+## CRON
+
+chronic execute une commande en silence sauf en cas d'échec, Il est utile pour les travaux de cron. Au lieu d'essayer de garder la commande silencieuse, et d'avoir à traiter des mails contenant des sorties accidentelles quand elle réussit, et pas assez verbeux quand elle échoue, vous pouvez simplement l'exécuter toujours verbalement, et utiliser Chronic pour cacher la sortie réussie.
+
+Exemple :
+
+Lors de la création d'un nouveau cron job, au lieu d'utiliser la ligne suivante ;
+
+```CRON
+#0 1 * * * backup >/dev/null 2>&1
+0 1 * * * chronic backup
 ```
