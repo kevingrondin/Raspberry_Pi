@@ -1034,3 +1034,45 @@ Lors de la création d'un nouveau cron job, au lieu d'utiliser la ligne suivante
 #0 1 * * * backup >/dev/null 2>&1
 0 1 * * * chronic backup
 ```
+
+## DEV
+
+### Services
+
+Si on est amenée à faire du developpement en python ou avec node l'instance s'éteindra dès lors que vouq quitterez votre session SSH, puisque la tâche ( `npm run start` ou `node server.js` ) tourne en `foreground`.
+
+Pour parrer à ça vous avez :
+
+1. screen
+1. tmux
+1. systemd
+1. pm2
+
+Nous allons ici réaliser un service, il faut créer un fichier sur notre instance à l'emplacement __/etc/system/system/<nom-du-service>.service__, avec la syntaxe suivante:
+
+```BASH
+# Configuration principale de notre service
+[Service]
+# Variables d'environnements à utiliser dans le service
+# Ici, spécifiez les variables d'environnement demandées plus haut comme
+Environment="NOM_DE_MA_VARIABLE=valeur"
+Environment="DB_HOST=127.0.0.1"
+Environment="DB_USER=infrauser"
+# ...
+
+# Suites de commande à exécuter pour chacun des états du service:
+# Ici, cette commande sera exécutée lorsqu'on appellera systemctl start mon-service
+ExecStart=cd <dossier-contenant-le-code-serveur> && npm run start
+```
+
+L'otion __Restart=on-failure__ peut redemarrer si notre service rencontre une erreur
+__journalctl -t__ dans le ExecStart serrais une bonne idée aussi pour avoir des log sur un canal en particuler
+
+```BASH
+# Notifie systemd que la configuration a été modifiée, et qu'il faut donc la prendre en compte
+sudo systemctl daemon-reload
+# Démarrer le nouveau service que vous venez de créer
+sudo systemctl start backend
+# Vérifier l'état du service
+sudo systemctl status backend
+```
